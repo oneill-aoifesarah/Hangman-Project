@@ -144,9 +144,10 @@ def play():
 
 # Entry point of the game
 if __name__ == "__main__":
-    ready_to_play = input("Are you ready to play Hangman? (y/n): ").lower()
+    user_name = input("Enter your name: ")
+    ready_to_play = input(f"Hi, {user_name}! Are you ready to play Hangman? (y/n):")
 
     if ready_to_play == "y":
-        play()
+        play(user_name)
     else:
-        print("Ok, maybe next time. Bye for now!")
+        print(f"Okay, maybe next time. Bye for now, {user_name}!")
