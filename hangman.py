@@ -147,3 +147,6 @@ def play_hangman():
         if play_again != 'y':
             print("Thanks for playing. See you soon!")
             break
+
+if __name__ == "__main__":
+    play_hangman()
