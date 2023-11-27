@@ -88,6 +88,7 @@ def get_word(difficulty):
 
 # Main function to play Hangman
 def play(user_name):
+
     # User selection of difficulty
     difficulty = input("Choose difficulty level (easy/medium/hard): ").lower()
     word = get_word(difficulty)
@@ -95,6 +96,12 @@ def play(user_name):
     if word is None:
         print("Invalid entry. Exiting the game.")
         return
+    
+        # Welcome message
+    print(f"Welcome to Hangman, {user_name}!")
+    print("Try to guess the word by adding a letter in just six attempts.")
+    print("Let's get started!\n")
+
     # Initialize variables
     word_completion = "_" * len(word)
     guessed = False
@@ -104,6 +111,7 @@ def play(user_name):
     print("Let's play Hangman!")
     print(display_hangman(attempts))
     print(word_completion + "\n")
+
     # Main game loop
     while not guessed and attempts > 0:
         # Get user input and guess
