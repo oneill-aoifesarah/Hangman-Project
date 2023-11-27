@@ -13,3 +13,11 @@ def get_word(difficulty):
         return random.choice(word_list_hard)
     else:
         return None
+
+
+# Function to play Hangman
+def play_hangman():
+    attempts = 6
+    print("Welcome to Hangman!")
+    username = input("Enter your name: ")
+    print(f"Hi, {username}. Let's play Hangman.")
