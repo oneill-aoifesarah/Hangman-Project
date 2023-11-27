@@ -106,10 +106,11 @@ def play(user_name):
     guessed = False
     guessed_letters = set()
     attempts = 6
+
     # Display initial hangman and status of the word
-    print("Let's play Hangman!")
+    print("Let's Go!")
     print(display_hangman(attempts))
-    print(word_completion + "\n")
+    print(" ".join(word_completion) + "\n")
 
     # Main game loop
     while not guessed and attempts > 0:
