@@ -117,7 +117,7 @@ def play_hangman():
         guessed_word = "".join([letter if letter in guessed_letters else '_' for letter in word])
         print(f"Current word: {guessed_word}")
 
-        # Get the player's guess
+        # Get the user's guess
         guess = input("Add a letter: ").lower()
 
         # Check if the letter has already been guessed
@@ -133,10 +133,17 @@ def play_hangman():
             print("Letter is not in the word")
             attempts -= 1
 
-        # Check if the player has guessed all the letters in the word
+        # Check if the user has guessed all the letters in the word
         if set(guessed_letters) == set(word):
             print("Congratulations! You guessed the word!")
             break
 
-    # Game over: Display the correct word
-    print("Game over. The word was:", word)
+        # Game over: Display the correct word
+        print("Game over. The word was:", word)
+
+        # Ask if the user wants to play again
+        play_again = input("Would you like to play again? (y/n): ").lower()
+
+        if play_again != 'y':
+            print("Thanks for playing. See you soon!")
+            break
