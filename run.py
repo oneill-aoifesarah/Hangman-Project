@@ -99,8 +99,7 @@ def play(user_name):
     
         # Welcome message
     print(f"Welcome to Hangman, {user_name}!")
-    print("Try to guess the word by adding a letter in just six attempts.")
-    print("Let's get started!\n")
+    print("Guess the word by adding a letter. You have six attempts available.")
 
     # Initialize variables
     word_completion = "_" * len(word)
