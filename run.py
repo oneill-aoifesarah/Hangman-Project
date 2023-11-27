@@ -7,30 +7,30 @@ from words import word_list_easy, word_list_medium, word_list_hard
 def display_hangman(attempts):
     # Hangman stages for each incorrect guess
     hangman_stages = [
-        # Initial empty state
-        """
-           ------
-           |    |
-           |
-           |
-           |
-           |
-        """,
-        # Head
+        # Final hangman state - all limbs
         """
            ------
            |    |
            |    O
-           |
-           |
+           |   /|\\
+           |   / \\
            |
         """,
-        # Torso and head
+        # One leg, two arms, torso, and head
         """
            ------
            |    |
            |    O
+           |   /|\\
+           |   /
+           |
+        """,
+        # Two arms, torso, and head
+        """
+           ------
            |    |
+           |    O
+           |   /|\\
            |
            |
         """,
@@ -43,31 +43,31 @@ def display_hangman(attempts):
            |
            |
         """,
-        # Two arms, torso, and head
+        # Torso and head
         """
            ------
            |    |
            |    O
-           |   /|\\
+           |    |
            |
            |
         """,
-        # One leg, two arms, torso, and head
+        # Head
         """
            ------
            |    |
            |    O
-           |   /|\\
-           |   /
+           |
+           |
            |
         """,
-        # Final hangman state - all limbs
+        # Initial empty state
         """
            ------
            |    |
-           |    O
-           |   /|\\
-           |   / \\
+           |
+           |
+           |
            |
         """,
     ]
