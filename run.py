@@ -1,10 +1,11 @@
-# Import and enable random function
+# Import words and randomize
 import random
 from words import word_list_easy, word_list_medium, word_list_hard
 
 
-# Display Hangman
+# Function to display the Hangman based on the number of attempts
 def display_hangman(attempts):
+    # Hangman stages for each incorrect guess
     hangman_stages = [
         # Initial empty state
         """
@@ -68,90 +69,84 @@ def display_hangman(attempts):
            |   /|\\
            |   / \\
            |
-        """
+        """,
     ]
     return hangman_stages[attempts]
 
 
 # Function to get a word based on difficulty
 def get_word(difficulty):
-    if difficulty == 'easy':
+    if difficulty == "easy":
         return random.choice(word_list_easy)
-    elif difficulty == 'medium':
+    elif difficulty == "medium":
         return random.choice(word_list_medium)
-    elif difficulty == 'hard':
+    elif difficulty == "hard":
         return random.choice(word_list_hard)
     else:
         return None
 
 
-# Function to play Hangman
-def play_hangman():
-    attempts = 6
-    print("Welcome to Hangman!")
-    username = input("Enter your name: ")
-    print(f"Hi, {username}. Let's play Hangman.")
-
-    # Ask if the player is ready to play
-    ready_to_play = input("Are you ready to play? (y/n): ").lower()
-
-    if ready_to_play != 'y':
-        print("Ok, maybe next time. Bye for now!")
-        return
-
-    # Display Hangman rules
-    print("Rules: Add letters to guess the word in just six attempts")
-
-    # Selection of difficulty level
+# Main function to play Hangman
+def play():
+    # User selection of difficulty
     difficulty = input("Choose difficulty level (easy/medium/hard): ").lower()
     word = get_word(difficulty)
-
+    # Check validity of entry
     if word is None:
         print("Invalid entry. Exiting the game.")
         return
-
-    # Set of guessed letters
+    # Initialize variables
+    word_completion = "_" * len(word)
+    guessed = False
     guessed_letters = set()
-
-    # Display the initial state of the hangman
+    attempts = 6
+    # Display inital hangman and status of the word
+    print("Let's play Hangman!")
     print(display_hangman(attempts))
+    print(word_completion + "\n")
+    # Main game loop
+    while not guessed and attempts > 0:
+        # Get user input and guess
+        guess = input("Guess a letter: ").upper()
+        # Validate user input
+        if len(guess) == 1 and guess.isalpha():
+            # Check if letter has already been guessed
+            if guess in guessed_letters:
+                print("Letter has alrady been guessed", guess)
+                # Incorrrect letter selection, add to set
+            elif guess not in word:
+                print(guess, "is not in the word")
+                attempts -= 1
+                guessed_letters.add(guess)
+            else:
+                # Correct guess, update word and add to set
+                print("Great,", guess, "is correct!")
+                guessed_letters.add(guess)
+                word_as_list = list(word_completion)
+                indices = [i for i, letter in enumerate(word) if letter == guess]
+                for index in indices:
+                    word_as_list[index] = guess
+                # Check if complete word has been guessed
+                word_completion = "".join(word_as_list)
+                if "_" not in word_completion:
+                    guessed = True
+        else:
+            print("Not a valid entry. Please enter a single letter.")
+        # Display Hangman and word status
+        print(display_hangman(attempts))
+        print(word_completion + "\n")
+        # Display word result - succesfull and unsuccesful
+    if guessed:
+        print("Well done! You guessed correctly:", word)
+    else:
+        print("Sorry, you've run out of attempts. The correct word was:", word)
 
-    # Main gameplay loop
-    while attempts > 0:
-        # Display the current state of the hangman and the guessed word
-        guessed_word = "".join([letter if letter in guessed_letters else '_' for letter in word])
-        print(f"Current word: {guessed_word}")
 
-        # Get the user's guess
-        guess = input("Add a letter: ").lower()
-
-        # Check if the letter has already been guessed
-        if guess in guessed_letters:
-            print("You already guessed that letter. Try again.")
-            continue
-
-        # Add the guessed letter to the set of guessed letters
-        guessed_letters.add(guess)
-
-        # Check if the guessed letter is not in the word
-        if guess not in word:
-            print("Letter is not in the word")
-            attempts -= 1
-
-        # Check if the user has guessed all the letters in the word
-        if set(guessed_letters) == set(word):
-            print("Congratulations! You guessed the word!")
-            break
-
-    # Game over: Display the correct word
-    print("Game over. The word was:", word)
-
-    # Ask if the user wants to play again
-    play_again = input("Would you like to play again? (y/n): ").lower()
-
-    if play_again != 'y':
-        print("Thanks for playing. See you soon!")
-
-
+# Entry point of the game
 if __name__ == "__main__":
-    play_hangman()
+    ready_to_play = input("Are you ready to play Hangman? (y/n): ").lower()
+
+    if ready_to_play == "y":
+        play()
+    else:
+        print("Ok, maybe next time. Bye for now!")
