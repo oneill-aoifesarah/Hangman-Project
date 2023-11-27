@@ -144,10 +144,17 @@ def play():
 
 # Entry point of the game
 if __name__ == "__main__":
-    user_name = input("Enter your name: ")
-    ready_to_play = input(f"Hi, {user_name}! Are you ready to play Hangman? (y/n):")
+    while True:
+        user_name = input("Enter your name: ")
+        ready_to_play = input(f"Hi, {user_name}! Are you ready to play Hangman? (y/n): ")
 
-    if ready_to_play == "y":
-        play(user_name)
-    else:
-        print(f"Okay, maybe next time. Bye for now, {user_name}!")
+        if ready_to_play.lower() == "y":
+            play(user_name)
+        else:
+            print(f"Okay, maybe next time. Bye for now, {user_name}!")
+            break  # Exit the loop if the user doesn't want to play
+
+        play_again = input("Do you want to play again? (y/n): ")
+        if play_again.lower() != "y":
+            print(f"Thanks for playing, {user_name}! Bye for now.")
+            break  # Exit the loop if the user doesn't want to play again
