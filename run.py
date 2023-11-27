@@ -113,10 +113,12 @@ def play_hangman():
     # Set of guessed letters
     guessed_letters = set()
 
+    # Display the initial state of the hangman
+    print(display_hangman(attempts))
+
     # Main gameplay loop
     while attempts > 0:
         # Display the current state of the hangman and the guessed word
-        print(display_hangman(attempts))
         guessed_word = "".join([letter if letter in guessed_letters else '_' for letter in word])
         print(f"Current word: {guessed_word}")
 
@@ -141,15 +143,14 @@ def play_hangman():
             print("Congratulations! You guessed the word!")
             break
 
-        # Game over: Display the correct word
-        print("Game over. The word was:", word)
+    # Game over: Display the correct word
+    print("Game over. The word was:", word)
 
-        # Ask if the user wants to play again
-        play_again = input("Would you like to play again? (y/n): ").lower()
+    # Ask if the user wants to play again
+    play_again = input("Would you like to play again? (y/n): ").lower()
 
-        if play_again != 'y':
-            print("Thanks for playing. See you soon!")
-            break
+    if play_again != 'y':
+        print("Thanks for playing. See you soon!")
 
 
 if __name__ == "__main__":
