@@ -28,3 +28,6 @@ def play_hangman():
     if ready_to_play != 'y':
         print("Ok, maybe next time. Bye for now!")
         return
+
+# Display Hangman rules
+    print("Rules: Suggest letters to guess the word.")
