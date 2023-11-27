@@ -2,6 +2,7 @@
 import random
 from words import word_list_easy, word_list_medium, word_list_hard
 
+
 # Display Hangman
 def display_hangman(attempts):
     hangman_stages = [
@@ -71,6 +72,7 @@ def display_hangman(attempts):
     ]
     return hangman_stages[attempts]
 
+
 # Function to get a word based on difficulty
 def get_word(difficulty):
     if difficulty == 'easy':
@@ -81,6 +83,7 @@ def get_word(difficulty):
         return random.choice(word_list_hard)
     else:
         return None
+
 
 # Function to play Hangman
 def play_hangman():
@@ -147,6 +150,7 @@ def play_hangman():
         if play_again != 'y':
             print("Thanks for playing. See you soon!")
             break
+
 
 if __name__ == "__main__":
     play_hangman()
