@@ -87,7 +87,7 @@ def get_word(difficulty):
 
 
 # Main function to play Hangman
-def play():
+def play(user_name):
     # User selection of difficulty
     difficulty = input("Choose difficulty level (easy/medium/hard): ").lower()
     word = get_word(difficulty)
@@ -100,7 +100,7 @@ def play():
     guessed = False
     guessed_letters = set()
     attempts = 6
-    # Display inital hangman and status of the word
+    # Display initial hangman and status of the word
     print("Let's play Hangman!")
     print(display_hangman(attempts))
     print(word_completion + "\n")
@@ -112,8 +112,8 @@ def play():
         if len(guess) == 1 and guess.isalpha():
             # Check if letter has already been guessed
             if guess in guessed_letters:
-                print("Letter has alrady been guessed", guess)
-                # Incorrrect letter selection, add to set
+                print("Letter has already been guessed", guess)
+                # Incorrect letter selection, add to set
             elif guess not in word:
                 print(guess, "is not in the word")
                 attempts -= 1
@@ -135,7 +135,7 @@ def play():
         # Display Hangman and word status
         print(display_hangman(attempts))
         print(word_completion + "\n")
-        # Display word result - succesfull and unsuccesful
+        # Display word result - successful and unsuccessful
     if guessed:
         print("Well done! You guessed correctly:", word)
     else:
@@ -149,7 +149,7 @@ if __name__ == "__main__":
         ready_to_play = input(f"Hi, {user_name}! Are you ready to play Hangman? (y/n): ")
 
         if ready_to_play.lower() == "y":
-            play(user_name)
+            play(user_name)  # Pass user_name as an argument
         else:
             print(f"Okay, maybe next time. Bye for now, {user_name}!")
             break  # Exit the loop if the user doesn't want to play
