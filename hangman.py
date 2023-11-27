@@ -39,3 +39,73 @@ def play_hangman():
     if word is None:
         print("Invalid entry. Exiting the game.")
         return
+
+
+# Display Hangman
+def display_hangman(attempts):
+    hangman_stages = [
+        # Initial empty state
+        """
+           ------
+           |    |
+           |
+           |
+           |
+           |
+        """,
+        # Head
+        """
+           ------
+           |    |
+           |    O
+           |
+           |
+           |
+        """,
+        # Torso and head
+        """
+           ------
+           |    |
+           |    O
+           |    |
+           |
+           |
+        """,
+        # One arm, torso, and head
+        """
+           ------
+           |    |
+           |    O
+           |   /|
+           |
+           |
+        """,
+        # Two arms, torso, and head
+        """
+           ------
+           |    |
+           |    O
+           |   /|\\
+           |
+           |
+        """,
+        # One leg, two arms, torso, and head
+        """
+           ------
+           |    |
+           |    O
+           |   /|\\
+           |   /
+           |
+        """,
+        # Final hangman state - all limbs
+        """
+           ------
+           |    |
+           |    O
+           |   /|\\
+           |   / \\
+           |
+        """
+    ]
+    return hangman_stages [attempts]
