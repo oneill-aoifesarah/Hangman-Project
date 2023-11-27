@@ -88,7 +88,6 @@ def get_word(difficulty):
 
 # Main function to play Hangman
 def play(user_name):
-
     # User selection of difficulty
     difficulty = input("Choose difficulty level (easy/medium/hard): ").lower()
     word = get_word(difficulty)
@@ -96,17 +95,14 @@ def play(user_name):
     if word is None:
         print("Invalid entry. Exiting the game.")
         return
-    
-        # Welcome message
+    # Welcome message
     print(f"Welcome to Hangman, {user_name}!")
     print("Guess the word by adding a letter. You have six attempts available.")
-
     # Initialize variables
     word_completion = "_" * len(word)
     guessed = False
     guessed_letters = set()
     attempts = 6
-
     # Display initial hangman and status of the word
     print("Let's Go!")
     print(display_hangman(attempts))
@@ -121,7 +117,7 @@ def play(user_name):
             # Check if letter has already been guessed
             if guess in guessed_letters:
                 print("Letter has already been guessed", guess)
-                # Incorrect letter selection, add to set
+            # Incorrect letter selection, add to set
             elif guess not in word:
                 print(guess, "is not in the word")
                 attempts -= 1
@@ -143,7 +139,8 @@ def play(user_name):
         # Display Hangman and word status
         print(display_hangman(attempts))
         print(word_completion + "\n")
-        # Display word result - successful and unsuccessful
+
+    # Display word result - successful and unsuccessful
     if guessed:
         print("Well done! You guessed correctly:", word)
     else:
